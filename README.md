@@ -38,7 +38,8 @@ Este projeto consiste em um CRUD (Create, Read, Update, Delete) para o cadastro 
     Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis:
 
     ```
-    DATABASE_URL=postgresql://usuario:senha@endereco-do-banco:5432/nome-do-banco
+    DATABASE_URL= Seu DATABASE_URL exportado do Neon.tech
+    DIRECT_URL= Seu DIRECT_URL exportado do Neon.tech
     ```
 
 ## Uso
