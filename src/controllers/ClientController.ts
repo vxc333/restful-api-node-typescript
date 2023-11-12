@@ -6,7 +6,7 @@ export default {
   async createClient(request: Request, response: Response) {
     try {
       const { nome, email } = request.body;
-      const clientExist = await prisma.user.findUnique({ where: email });
+      const clientExist = await prisma.user.findUnique({ where: { email } });
 
       if (clientExist) {
         return response.json({
@@ -58,18 +58,14 @@ export default {
   async listClient(response: Response) {
     try {
       const clientsExist = await prisma.user.findMany();
-      if(clientsExist.length===0){
+
+      if (clientsExist.length === 0 || !clientsExist) {
         return response.json({
           error: true,
           message: "Error : Nenhum cliente encontrado!",
         });
       }
-      if (!clientsExist) {
-        return response.json({
-          error: true,
-          message: "Error : Não existe clientes!",
-        });
-      }
+
       return response.json({
         error: false,
         clientsExist,
