@@ -54,11 +54,11 @@ Este projeto consiste em um CRUD (Create, Read, Update, Delete) para o cadastro 
 
 ## Rotas
 
-- **GET /clientes**: Retorna a lista de todos os clientes.
-- **GET /clientes/:id**: Retorna os detalhes de um cliente específico.
-- **POST /clientes**: Cadastra um novo cliente. Envie um corpo JSON com "nome" e "email".
-- **PUT /clientes/:id**: Atualiza os dados de um cliente específico. Envie um corpo JSON com os campos a serem atualizados.
-- **DELETE /clientes/:id**: Exclui um cliente específico.
+- **GET /usuarios**: Retorna a lista de todos os clientes.
+- **GET /usuarios/:id**: Retorna os detalhes de um cliente específico.
+- **POST /usuarios**: Cadastra um novo cliente. Envie um corpo JSON com "nome" e "email".
+- **PUT /usuarios/:id**: Atualiza os dados de um cliente específico. Envie um corpo JSON com os campos a serem atualizados.
+- **DELETE /usuarios/:id**: Exclui um cliente específico.
 
 ## Estrutura do Banco de Dados
 
