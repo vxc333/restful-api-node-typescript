@@ -32,7 +32,10 @@ Este projeto consiste em um CRUD (Create, Read, Update, Delete) para o cadastro 
     
     yarn add @types/node@^20.9.0 prisma@^5.5.2 ts-node-dev@^2.0.0 typescript@^5.2.2 --dev
     ```
-
+3. Inicialize o Typescript
+    ```
+    npx tsc --init
+    ```
 3. Configure as variáveis de ambiente:
 
     Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis:
