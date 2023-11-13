@@ -41,6 +41,11 @@ Este projeto consiste em um CRUD (Create, Read, Update, Delete) para o cadastro 
     DATABASE_URL= Seu DATABASE_URL exportado do Neon.tech
     DIRECT_URL= Seu DIRECT_URL exportado do Neon.tech
     ```
+4. Execute o comando a seguir
+
+   ```
+   npx prisma generate
+   ```
 
 ## Uso
 
@@ -57,7 +62,7 @@ Este projeto consiste em um CRUD (Create, Read, Update, Delete) para o cadastro 
 - **GET /usuarios**: Retorna a lista de todos os clientes.
 - **GET /usuarios/:id**: Retorna os detalhes de um cliente específico.
 - **POST /usuarios**: Cadastra um novo cliente. Envie um corpo JSON com "nome" e "email".
-- **PUT /usuarios/:id**: Atualiza os dados de um cliente específico. Envie um corpo JSON com os campos a serem atualizados.
+- **PUT /usuarios/**: Atualiza os dados de um cliente específico. Envie um corpo JSON com os campos a serem atualizados e o id que vai ser atualizado.
 - **DELETE /usuarios/:id**: Exclui um cliente específico.
 
 ## Estrutura do Banco de Dados
