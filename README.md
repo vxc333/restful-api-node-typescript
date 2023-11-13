@@ -6,7 +6,7 @@ Este projeto consiste em um CRUD (Create, Read, Update, Delete) para o cadastro 
 
 - Node.js (v14.0.0 ou superior)
 - npm ou yarn
-- Banco de dados PostgreSQL
+- Banco de dados PostgreSQL(Neon.tech)
 
 ## Configuração
 
