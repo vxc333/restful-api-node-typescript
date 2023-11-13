@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Request, Response } from "express";
 import { prisma } from "../database";
 
@@ -8,10 +7,21 @@ export default {
       const { nome, email } = request.body;
       const clientExist = await prisma.user.findUnique({ where: { email } });
 
+      const existingEmail = await prisma.user.findUnique({
+        where: {
+          email: email,
+        },
+      });
+
       if (clientExist) {
         return response.json({
           error: true,
           message: "Erro: Cliente já existe!",
+        });
+      } else if (existingEmail) {
+        return response.json({
+          error: true,
+          message: "Error : Email já existe!",
         });
       }
 
@@ -25,6 +35,7 @@ export default {
       return response.json({
         error: false,
         message: "Sucesso : Cliente Cadastrado com sucesso!",
+        client,
       });
     } catch (error) {
       return response.json({ message: error.message });
@@ -55,11 +66,11 @@ export default {
     }
   },
 
-  async listClient(response: Response) {
+  async listClient(request: Request, response: Response) {
     try {
-      const clientsExist = await prisma.user.findMany();
+      const clients = await prisma.user.findMany();
 
-      if (clientsExist.length === 0 || !clientsExist) {
+      if (!clients || clients.length === 0) {
         return response.json({
           error: true,
           message: "Error : Nenhum cliente encontrado!",
@@ -68,7 +79,7 @@ export default {
 
       return response.json({
         error: false,
-        clientsExist,
+        clients,
       });
     } catch (error) {
       return response.json({ message: error.message });
@@ -83,13 +94,23 @@ export default {
         where: { id: Number(id) },
       });
 
+      const existingEmail = await prisma.user.findUnique({
+        where: {
+          email: email,
+        },
+      });
+
       if (!clientExist) {
         return response.json({
           error: true,
           message: "Error : Cliente não encontrado!",
         });
+      } else if (existingEmail) {
+        return response.json({
+          error: true,
+          message: "Error : Email já existe!",
+        });
       }
-
       const client = await prisma.user.update({
         where: {
           id: Number(request.body.id),
@@ -127,7 +148,7 @@ export default {
 
       const client = await prisma.user.delete({
         where: {
-          id: Number(request.body.id),
+          id: Number(id),
         },
       });
 

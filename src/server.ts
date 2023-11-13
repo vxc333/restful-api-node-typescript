@@ -12,7 +12,9 @@ app.get("/usuarios/:id",ClientController.listClientId);
 
 app.get("/usuarios",ClientController.listClient);
 
-app.put("/usuarios/:id",ClientController.uptadeClient);
+app.put("/usuarios/",ClientController.uptadeClient);
+
+app.delete("/usuarios/:id",ClientController.deleteClient);
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando! ${PORT}`);
