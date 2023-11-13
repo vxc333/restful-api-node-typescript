@@ -82,10 +82,18 @@ export default {
 
   async uptadeClient(request: Request, response: Response) {
     try {
-      const { id, nome, email } = request.body;
+      const { id } = request.params;
+      const { nome, email } = request.body;
       const clientExist = await prisma.user.findUnique({
         where: { id: Number(id) },
       });
+
+      if (!id) {
+        return response.status(400).json({
+          error: true,
+          message: "Erro: ID do cliente não fornecido.",
+        });
+      }
 
       const existingEmail = await prisma.user.findUnique({
         where: {
@@ -98,10 +106,22 @@ export default {
           error: true,
           message: "Error : Cliente não encontrado!",
         });
-      } else if (existingEmail) {
-        return response.status(400).json({
+      }
+      else if (existingEmail) {
+
+        const client = await prisma.user.update({
+          where: {
+            id: Number(id),
+          },
+          data: {
+            nome
+          },
+        });
+
+        return response.status(200).json({
           error: true,
-          message: "Error : Email já existe!",
+          message: "Sucesso : Email já existe, porém nome atualizado!",
+          client
         });
       }
       const client = await prisma.user.update({
@@ -110,7 +130,7 @@ export default {
         },
         data: {
           nome,
-          email,
+          email:email !== existingEmail.email ? {set : email} : undefined,
         },
       });
 
@@ -127,6 +147,13 @@ export default {
   async deleteClient(request: Request, response: Response) {
     try {
       const { id } = request.params;
+
+      if (!id) {
+        return response.status(400).json({
+          error: true,
+          message: "Erro: ID do cliente não fornecido.",
+        });
+      }
 
       const clientExist = await prisma.user.findUnique({
         where: { id: Number(id) },

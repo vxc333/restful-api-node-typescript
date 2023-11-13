@@ -12,7 +12,7 @@ app.get("/usuarios/:id",ClientController.listClientId);
 
 app.get("/usuarios",ClientController.listClient);
 
-app.put("/usuarios/",ClientController.uptadeClient);
+app.put("/usuarios/:id",ClientController.uptadeClient);
 
 app.delete("/usuarios/:id",ClientController.deleteClient);
 
