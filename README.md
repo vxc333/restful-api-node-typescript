@@ -19,7 +19,7 @@ Este projeto consiste em um CRUD (Create, Read, Update, Delete) para o cadastro 
 2. Instale as dependências:
 
     ```bash
-    cd resful-api-node-typescript
+    cd restful-api-node-typescript
     npm install @prisma/client@^5.5.2 @types/express@^4.17.21 express@^4.18.2 --save
     
     npm install @types/node@^20.9.0 prisma@^5.5.2 ts-node-dev@^2.0.0 typescript@^5.2.2 --save-dev
