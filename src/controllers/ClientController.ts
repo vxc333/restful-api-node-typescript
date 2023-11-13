@@ -5,23 +5,17 @@ export default {
   async createClient(request: Request, response: Response) {
     try {
       const { nome, email } = request.body;
-      const clientExist = await prisma.user.findUnique({ where: { email } });
 
-      const existingEmail = await prisma.user.findUnique({
+      const clientExist = await prisma.user.findUnique({
         where: {
           email: email,
         },
       });
 
       if (clientExist) {
-        return response.json({
+        return response.status(400).json({
           error: true,
-          message: "Erro: Cliente já existe!",
-        });
-      } else if (existingEmail) {
-        return response.json({
-          error: true,
-          message: "Error : Email já existe!",
+          message: "Erro: Email já existe!",
         });
       }
 
@@ -32,13 +26,13 @@ export default {
         },
       });
 
-      return response.json({
+      return response.status(200).json({
         error: false,
         message: "Sucesso : Cliente Cadastrado com sucesso!",
         client,
       });
     } catch (error) {
-      return response.json({ message: error.message });
+      return response.status(500).json({ message: error.message });
     }
   },
 
@@ -51,18 +45,18 @@ export default {
       });
 
       if (!clientExist) {
-        return response.json({
+        return response.status(404).json({
           error: true,
           message: "Error : Cliente não encontrado!",
         });
       }
 
-      return response.json({
+      return response.status(200).json({
         error: false,
         clientExist,
       });
     } catch (error) {
-      return response.json({ message: error.message });
+      return response.status(500).json({ message: error.message });
     }
   },
 
@@ -71,25 +65,24 @@ export default {
       const clients = await prisma.user.findMany();
 
       if (!clients || clients.length === 0) {
-        return response.json({
+        return response.status(404).json({
           error: true,
           message: "Error : Nenhum cliente encontrado!",
         });
       }
 
-      return response.json({
+      return response.status(200).json({
         error: false,
         clients,
       });
     } catch (error) {
-      return response.json({ message: error.message });
+      return response.status(500).json({ message: error.message });
     }
   },
 
   async uptadeClient(request: Request, response: Response) {
     try {
       const { id, nome, email } = request.body;
-
       const clientExist = await prisma.user.findUnique({
         where: { id: Number(id) },
       });
@@ -101,19 +94,19 @@ export default {
       });
 
       if (!clientExist) {
-        return response.json({
+        return response.status(404).json({
           error: true,
           message: "Error : Cliente não encontrado!",
         });
       } else if (existingEmail) {
-        return response.json({
+        return response.status(400).json({
           error: true,
           message: "Error : Email já existe!",
         });
       }
       const client = await prisma.user.update({
         where: {
-          id: Number(request.body.id),
+          id: Number(id),
         },
         data: {
           nome,
@@ -121,13 +114,13 @@ export default {
         },
       });
 
-      return response.json({
+      return response.status(200).json({
         error: false,
         message: "Sucesso : Cliente atualizado!",
         client,
       });
     } catch (error) {
-      return response.json({ message: error.message });
+      return response.status(500).json({ message: error.message });
     }
   },
 
@@ -140,7 +133,7 @@ export default {
       });
 
       if (!clientExist) {
-        return response.json({
+        return response.status(404).json({
           error: true,
           message: "Error : Cliente não encontrado!",
         });
@@ -152,13 +145,13 @@ export default {
         },
       });
 
-      return response.json({
+      return response.status(200).json({
         error: false,
         message: "Cliente deletado com sucesso",
         client,
       });
     } catch (error) {
-      return response.json({ message: error.message });
+      return response.status(500).json({ message: error.message });
     }
   },
 };
