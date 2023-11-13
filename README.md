@@ -13,7 +13,7 @@ Este projeto consiste em um CRUD (Create, Read, Update, Delete) para o cadastro 
 1. Clone o repositório:
 
     ```bash
-    git clone https://github.com/seu-usuario/seu-repositorio.git
+    git clone https://github.com/vxc333/restful-api-node-typescript.git
     ```
 
 2. Instale as dependências:
