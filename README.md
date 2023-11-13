@@ -6,14 +6,14 @@ Este projeto consiste em um CRUD (Create, Read, Update, Delete) para o cadastro 
 
 - Node.js (v14.0.0 ou superior)
 - npm ou yarn
-- Banco de dados PostgreSQL
+- Banco de dados PostgreSQL(Neon.tech)
 
 ## Configuração
 
 1. Clone o repositório:
 
     ```bash
-    git clone https://github.com/seu-usuario/seu-repositorio.git
+    git clone https://github.com/vxc333/restful-api-node-typescript.git
     ```
 
 2. Instale as dependências:
